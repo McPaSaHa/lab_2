@@ -1,0 +1,34 @@
+insert into Price (price_business, price_economy) values (15000, 500);
+insert into Price (price_business, price_economy) values (10000, 600);
+insert into Price (price_business, price_economy) values (9000, 500);
+
+select * from Price; 
+
+
+insert into planes (model, Airline, Year_created, Number_seats) values ('Ан-140', 'Мотор Січ', '1997', 50);
+insert into planes (model, Airline, Year_created, Number_seats) values ('Ан-148', '«ДП Антонов»', '2009', 60);
+insert into planes (model, Airline, Year_created, Number_seats) values ('Ан-158', 'Cubana de Aviación', '2010', 70);
+
+select * from planes;
+
+insert into Flights (departure_time, pickup_location, flight_date) values ('16:00', 'Київ', '28.10.2020');
+insert into Flights (departure_time, pickup_location, flight_date) values ('8:00', 'Одеса', '29.10.2020');
+insert into Flights (departure_time, pickup_location, flight_date) values ('16:00', 'Чернівці', '30.10.2020');
+
+select * from Flights;
+
+insert into Tickets (class_tecket, price, place_number, id_flight) values ('Бізнес', 15000, 1, 1);
+insert into Tickets (class_tecket, price, place_number, id_flight) values ('Економ', 500, 2,  1);
+insert into Tickets (class_tecket, price, place_number, id_flight) values ('Економ', 1000, 3,  3);
+
+select * from Tickets;
+
+insert into Passengers (PIP, date_birth, residence, passport_data) values ('Стельмащук Олег Станіславович', '20.12.1988', 'Прилуки', 'серія МА№ 69334');
+insert into Passengers (PIP, date_birth, residence, passport_data) values ('Кондро Ігор Володимирович', '10.05.1980', 'Чернівці', 'серія МА№ 79334');
+insert into Passengers (PIP, date_birth, residence, passport_data) values ('Ганюк Руслан Володимирович', '16.02.1995', 'Харків', 'серія МА№ 85534');
+
+select * from Passengers;
+
+delete from Passengers where date_birth  > 'today'::date;
+UPDATE Price SET price_business = price_business + 500;
+UPDATE Price SET price_economy = price_economy + 500;

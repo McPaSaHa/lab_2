@@ -1,0 +1,53 @@
+ DROP TABLE IF EXISTS Tickets, Passengers, Planes, Flights, Price;
+ 
+   CREATE TABLE Price (
+	id_flight BIGSERIAL NOT NULL PRIMARY KEY,
+	price_business NUMERIC(19, 2) NOT NULL,
+	price_economy NUMERIC(19, 2) NOT NULL
+ );
+ 
+ 
+  CREATE TABLE Planes (
+	id_planes BIGSERIAL NOT NULL PRIMARY KEY,
+	model VARCHAR(50) NOT NULL,
+	Airline VARCHAR(50) NOT NULL,
+	Year_created interval year NOT NULL,
+	Number_seats INT NOT NULL
+ );
+ 
+ CREATE TABLE Flights (
+	id_flight BIGSERIAL NOT NULL PRIMARY KEY,
+	departure_time TIME NOT NULL,
+	pickup_location VARCHAR(50) NOT NULL,
+	id_planes BIGSERIAL NOT NULL,
+	flight_date DATE NOT NULL,
+	CONSTRAINT fk_Flights_Planes FOREIGN KEY (id_planes) REFERENCES planes (id_planes)
+ );
+ 
+ 
+ 
+ CREATE TABLE Tickets (
+	id_ticket BIGSERIAL NOT NULL PRIMARY KEY,
+	class_tecket VARCHAR(50) NOT NULL,
+	price NUMERIC(19, 2) NOT NULL,
+	place_number INT NOT NULL,
+	id_flight BIGSERIAL NOT NULL,
+	 CONSTRAINT fk_tickets_price FOREIGN KEY (id_flight) REFERENCES Price (id_flight),
+	 CONSTRAINT fk_tickets_flight FOREIGN KEY (id_flight) REFERENCES Flights (id_flight)
+ );
+ 
+ CREATE TABLE Passengers (
+	PIP VARCHAR(50) NOT NULL,
+	date_birth DATE NOT NULL,
+	residence VARCHAR(50) NOT NULL,
+	passport_data VARCHAR(50) NOT NULL PRIMARY KEY,
+	id_ticket BIGSERIAL NOT NULL,
+	CONSTRAINT fk_tickets_passengers FOREIGN KEY (id_ticket) REFERENCES tickets (id_ticket)
+ );
+ 
+ 
+
+ 
+
+ 
+ 
