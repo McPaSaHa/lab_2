@@ -1,0 +1,12 @@
+ALTER TABLE Flights DROP CONSTRAINT fk_Flights_Planes;
+
+ALTER TABLE Flights alter column "pickup_location" type varchar(40);
+
+ALTER TABLE Price RENAME COLUMN price_business TO price_busins;
+
+ALTER TABLE Price ADD Price_new varchar(15);
+ALTER TABLE Price ADD Price_num int;
+ALTER TABLE Price ADD CONSTRAINT Price_new UNIQUE (Price_new, Price_num);
+
+ALTER TABLE Tickets DROP CONSTRAINT id_flight;
+ALTER TABLE Tickets ADD CONSTRAINT id_flight FOREIGN KEY (id_flight) REFERENCES  Price(id_flight);

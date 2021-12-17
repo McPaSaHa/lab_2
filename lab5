@@ -1,0 +1,22 @@
+
+CREATE TABLE T1
+  AS SELECT id_flight, price_business from Price
+  where id_flight < 3;
+  
+CREATE TABLE T2
+  AS SELECT id_flight, price_business from Price
+  where id_flight >= 2 and id_flight = 5;
+  
+SELECT * from T1 
+  UNION SELECT * FROM T2;
+  
+SELECT * from T1 
+  UNION ALL SELECT * FROM T2;  
+  
+SELECT * FROM T1
+  INTERSECT SELECT * FROM T2;
+  
+SELECT * FROM T1
+  EXCEPT SELECT * FROM T2;
+  
+SELECT * FROM T1,T2;

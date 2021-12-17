@@ -1,0 +1,24 @@
+insert into Price (price_business, price_economy) values (7000, 500);
+insert 
+	into Price (price_business, price_economy) values (700, 100)
+	into Price (price_business, price_economy) values (4500, 400)
+	into Price (price_business, price_economy) values (1000, 250)
+	into Price (price_business, price_economy) values (4500, 300)
+SELECT * FROM Price;
+
+
+copy Price(price_business,price_economy)
+from 'C:\load\test.csv'
+delimiter ',' csv Header;
+select * from Price;
+
+
+
+UPDATE Price SET price_business = 5000 where price_economy = 1000;
+
+UPDATE Price SET price_business = 5000 where price_economy > 1000;
+
+DELETE FROM Passengers WHERE PIP = 'Стельмащук Олег Станіславович';
+DELETE FROM Passengers WHERE PIP IN ('Кондро Ігор Володимирович', 'Ганюк Руслан Володимирович');
+
+TRUNCATE TABLE Department CASCADE;
