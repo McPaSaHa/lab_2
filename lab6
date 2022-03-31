@@ -1,0 +1,37 @@
+ DROP VIEW IF EXISTS PriceViev, planesView, TicketsView, PriceView2;
+
+-- 1. Запит на виконання проекції (відображення) для таблиць вашої БД.
+
+CREATE OR REPLACE VIEW PriceView AS SELECT * FROM Price;
+SELECT * FROM PriceView;
+
+CREATE OR REPLACE VIEW planesView AS SELECT * FROM planes;
+SELECT * FROM planesView;
+
+CREATE OR REPLACE VIEW TicketsView AS SELECT * FROM Tickets;
+SELECT * FROM TicketsView;
+
+-- 2. Запит на виконання складної проекції для таблиць вашої БД.
+
+CREATE OR REPLACE VIEW PriceView2 AS SELECT * FROM Price where price_business > 9000;
+SELECT * FROM PriceView2;
+
+CREATE OR REPLACE VIEW planesView2 AS SELECT * FROM planes where Number_seats < 70;
+SELECT * FROM planesView2;
+
+CREATE OR REPLACE VIEW TicketsView2 AS SELECT * FROM Tickets  where price < 15000 and price > 500;
+SELECT * FROM TicketsView2;
+
+-- 3. Запит на виконання селекції з використанням будь-якої складної умови відбору для таблиць вашої БД.
+
+SELECT * FROM Price WHERE Price.price_business + Price.price_economy < 10000;
+
+-- 4. Запит на виконання натурального з’єднання у будь-яких таблицях вашої БД.
+
+SELECT * FROM Tickets, Flights WHERE Tickets.place_number = Flights.id_flight;
+
+-- 5. Запит на виконання умовного з’єднання для таблиць вашої БД
+
+SELECT * FROM Flights INNER JOIN Price ON (Flights.id_flight = Price.id_flight) 
+WHERE Flights.id_flight > 1
+AND Price.price_business > 1000; 
