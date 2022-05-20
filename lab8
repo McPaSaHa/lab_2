@@ -1,0 +1,32 @@
+-- Вивести перелік пасажирів відсортованих по прізвищу в алфавітному порядку
+select *from Passengers order by PIP;
+
+-- Вивести пасажирів відсортованих за датою народження
+select *from Passengers  order by date_birth;
+
+-- Вивести літаків відсортованих за моделлю та рік випуску
+select *from Planes order by model, Year_created;
+
+-- Вивести перелік квитків відсортований за ціною в порядку:
+-- 1 зростання
+select *from Tickets order by price asc;
+-- 2 спадання
+select *from Tickets order by price desc;
+
+-- Вивести перелік літаків відсортований по кількості місць в порядку спадання 
+select *from Planes order by Number_seats desc;
+
+-- Вивести перелік 2 найновіших рейсів(по даті) 
+select *from Flights order by flight_date desc limit 2;
+
+-- Вивести перелік рейсів згрупованих по даті та часу
+Select flight_date, departure_time from Flights group by flight_date, departure_time;
+
+-- Вивести суму вартості по кожному класу(бізнес, економ)
+select class_tecket, sum(price) as price from Tickets group by class_tecket;
+
+--(1) Вивести пасажирів та їх клас 
+select PIP, class_tecket from Passengers join Tickets on Passengers.id_ticket = Tickets.id_ticket group by PIP, class_tecket;
+
+
+

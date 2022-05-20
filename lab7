@@ -1,0 +1,44 @@
+--(1) Вивести пасажирів та їх клас (бізнес, економ)
+select distinct PIP, class_tecket from Passengers, Tickets where Passengers.id_ticket = Tickets.id_ticket;
+
+--(2) Вивести моделі літака та кількість місць які дорівнюють 50 або 70
+select model, Number_seats from Planes inner join Flights on Planes.id_planes = Flights.id_planes where Number_seats = 70 or Number_seats = 50; 
+
+--(3) Вивести міста взльту, дата та авіакомпанія яка випускає літак
+select pickup_location, flight_date, Airline from Flights, Planes where Flights.id_planes = Planes.id_planes;
+
+--(4) Вивести міста взльту, дата та модель літака
+select pickup_location, flight_date, model from Flights left join Planes on Flights.id_planes = Planes.id_planes;
+
+--(5) Вивести рейси дата яких входить в діапазон від '22.10.2020' до '29.10.2020'
+select departure_time, pickup_location, flight_date from Flights where flight_date between'22.10.2020' and '29.10.2020';
+
+--(6) Вивести пасажирів у яких є соціальна допомога 
+select PIP, passport_data, social_hellp from Passengers where social_hellp is not null;
+
+--(7) Вивести пасажирів у яких немає соціцальної допомоги
+select PIP, passport_data, social_hellp from Passengers where social_hellp is null;
+
+--(8) Вивести ціну яка не співпадає з квитком
+select *from Price where not exists(select price from Tickets where Price.id_flight = Tickets.id_flight);
+
+--(9) Вивести пасажирів, в яких прізвище починається на К
+select * from Passengers where PIP Like 'К%';
+
+--(10) Вивести все що відповідає умові
+select ALL class_tecket from Tickets where true;
+
+--(11) Вивести рейси де ціна за бізнес клас > 9000
+select *from Price where price_business = SOME(select price_business from Price where price_business > 9000)order by price_business ASC;
+
+--(12) Вивести пасажирів в яких є діти
+select PIP, passport_data, number_children from Passengers where number_children = ANY(SELECT number_children from Passengers where number_children > 0); 
+
+--(13) Вивести пасажирів які з Харкова та Чернівців
+select * from Passengers where residence in('Харків', 'Чернівці');
+
+--(14)Вивести всі літаки окрім Ан-140
+select * from planes where model not in('Ан-140');
+
+--(15)Вивести прізвище і'мя по батькові, дата рейсу, ціна та модель літака
+Select model, flight_date, price, PIP from Flights join Planes on Flights.id_planes = Planes.id_planes join Tickets on Flights.id_flight = Tickets.id_flight join Passengers on Tickets.id_ticket = Passengers.id_ticket;
