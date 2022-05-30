@@ -1,0 +1,17 @@
+--Вивести загальну кількість квитків.
+select count(class_tecket) as "Кількість квитків" from Tickets; 
+
+--Вивести вартість найдорощого квитка.
+select max(price) as "Вартість найдорощого квитка" from Tickets;
+
+--Вивести вартість найдешевшого квитка.
+select min(price) as "Вартість найдешевшого квитка" from Tickets;
+
+--Вивести загальну суму квитків.
+SELECT SUM(price) AS "Сума всіх квитків" FROM Tickets;
+
+--Вивести середю ціну квитків. 
+select avg(price) as "Середня ціна квитків" from Tickets;
+
+--Вивести кількість квитків кожного класу(бізнес, економ)
+select class_tecket, count(id_ticket) as "Кількість квитків кожного класу" from Tickets group by class_tecket;
