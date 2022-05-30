@@ -1,0 +1,49 @@
+-- Функція генеральної суми по ціні
+Create or replace Function general_price()
+ returns int 
+ AS 
+ $$
+ declare
+Q_general_price int;
+ Begin 
+ 	Select sum(price)into Q_general_price from Tickets;
+ 	return Q_general_price;
+ end;
+ 	$$ LANGUAGE plpgsql;	
+select general_price();
+select *from Tickets;
+
+-- Функція інформації по літаках
+
+Create or replace PROCEDURE plane_info(id_plan int)
+AS
+$$
+	declare 
+		planes planes%ROWTYPE;
+	Begin 
+	select*
+	into planes 
+	from Planes
+	where id_planes = id_plan;
+end;
+	$$ LANGUAGE plpgsql;	
+call plane_info(3);
+
+-- Функція для видалення записів з таблиці Літаки
+
+insert into planes (model, Airline, Year_created, Number_seats) values ('Ан-150', 'Cubana', '2015', 50);
+
+Create or replace PROCEDURE DELETEPlanes
+(
+	planes_id int
+) LANGUAGE plpgsql AS
+$$
+Begin
+Delete from Planes where id_planes = planes_id;
+end
+$$;
+call DELETEPlanes(6);
+select*from Planes;
+
+
+
